@@ -1,6 +1,8 @@
 require('babel-register')({
-	plugins: ['babel-plugin-rewire']
+	plugins: ['babel-plugin-rewire'],
+	sourceMaps: 'inline'
 });
+
 require('babel-polyfill');
 
 const main = require('./main');
