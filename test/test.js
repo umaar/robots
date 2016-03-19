@@ -1,8 +1,14 @@
 import test from 'ava';
-import fn from '../src/main.js';
+import rewire from 'rewire';
+
+const main = rewire('../src/main.js');
+const internal = main.__get__('internal');
 
 test('Boilerplate function', t => {
-	t.plan(1);
+	t.plan(2);
+
 	const num = 2;
-	t.is(fn({num}), 4);
+	t.is(main({num}), 4);
+
+	t.is(internal(), 42);
 });
