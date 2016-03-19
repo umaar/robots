@@ -1,6 +1,8 @@
 
+import {existsSync} from 'fs';
+
 function internal() {
-	return 42;
+	return existsSync('./.travis.yml');
 }
 
 function fn({num}) {

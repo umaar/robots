@@ -1,14 +1,13 @@
 import test from 'ava';
-import rewire from 'rewire';
 
-const main = rewire('../src/main.js');
-const internal = main.__get__('internal');
+import main from '../src/main.js';
 
 test('Boilerplate function', t => {
-	t.plan(2);
+	main.__Rewire__('existsSync', () => true);
+	const internal = main.__get__('internal');
+	t.is(internal(), true);
 
+	const fn = main.__get__('fn');
 	const num = 2;
-	t.is(main({num}), 4);
-
-	t.is(internal(), 42);
+	t.is(fn({num}), 4);
 });
