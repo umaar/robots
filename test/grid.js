@@ -34,4 +34,12 @@ test('Is Valid Instruction', t => {
 		x: 20, y: 15, orientation: 'N'
 	});
 	t.is(try4, true);
+
+	const try5 = isValidMove(sampleGrid.scents, {});
+	t.is(try5, true);
+
+	const try6 = isValidMove(sampleGrid.scents, {
+		x: 1
+	});
+	t.is(try6, true);
 });
