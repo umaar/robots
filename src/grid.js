@@ -13,7 +13,9 @@ grid = {
 
 function isValidMove(disallowedMoves = [], attempt) {
 	return !disallowedMoves.some(({x, y, orientation}) => {
-		return x === attempt.x && y === attempt.y && orientation === attempt.orientation;
+		return x === attempt.x &&
+			y === attempt.y &&
+			orientation === attempt.orientation;
 	});
 }
 
