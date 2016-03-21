@@ -36,4 +36,23 @@ test('Robot instruction with a many directions', t => {
 
 	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'E'}, 'RR');
 	t.same(try1, {x: 2, y: 1, orientation: 'W'});
+
+	const try2 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'RRRR');
+	t.same(try2, {x: 2, y: 1, orientation: 'N'});
+
+	const try3 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'RLRLRLRLRLRLRLRLRL');
+	t.same(try3, {x: 2, y: 1, orientation: 'N'});
+
+	const try4 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'LLLL');
+	t.same(try4, {x: 2, y: 1, orientation: 'N'});
+
+	const try5 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, '');
+	t.same(try5, {x: 2, y: 1, orientation: 'N'});
+});
+
+test('Robot can handle movement', t => {
+	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
+
+	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'F');
+	t.same(try1, {x: 2, y: 2, orientation: 'N'});
 });
