@@ -50,9 +50,9 @@ test('Robot instruction with a many directions', t => {
 	t.same(try5, {x: 2, y: 1, orientation: 'N'});
 });
 
-test('Robot can handle movement', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
+// test('Robot can handle movement', t => {
+// 	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
 
-	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'F');
-	t.same(try1, {x: 2, y: 2, orientation: 'N'});
-});
+// 	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'F');
+// 	t.same(try1, {x: 2, y: 2, orientation: 'N'});
+// });

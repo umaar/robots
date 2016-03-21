@@ -4,7 +4,7 @@
 	robot = { x: 2, y:1, orientation: 'N' }
 */
 
-const directions = { L: -90, R: 90 };
+const directions = {L: -90, R: 90};
 
 const points = ['N', 'E', 'S', 'W'];
 
@@ -21,13 +21,13 @@ function handleOrientation(currentOrientation, desiredOrientation) {
 	return points[index];
 }
 
-function handleRobotInstruction(robot, instruction='') {
-	instruction.split('').map(direction => {
+function handleRobotInstruction(robot, instruction = '') {
+	return instruction.split('').reduce((robot, direction) => {
 		const updatedOrientation = handleOrientation(robot.orientation, direction);
-		robot.orientation = updatedOrientation;
-	});
 
-	return robot;
+		robot.orientation = updatedOrientation;
+		return robot;
+	}, robot);
 }
 
 module.exports = handleRobotInstruction;
