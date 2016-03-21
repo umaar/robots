@@ -11,6 +11,8 @@ grid = {
 
 */
 
+//TODO: Add scent
+
 function isValidMove(disallowedMoves = [], attempt) {
 	return !disallowedMoves.some(({x, y, orientation}) => {
 		return x === attempt.x &&
