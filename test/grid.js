@@ -2,7 +2,9 @@ import test from 'ava';
 
 import grid from '../src/grid.js';
 
-// TODO - what if orientation differs, can a robot still fall off the grid?
+/*
+	what if orientation differs, can a robot still fall off the grid?
+*/
 
 test('Is Valid Instruction', t => {
 	const isValidMove = grid.__get__('isValidMove');
