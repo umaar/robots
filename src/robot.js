@@ -17,15 +17,19 @@ const points = {
 };
 
 function handleRobotInstruction(robot, instruction) {
-	const pointsLength = Object.keys(points).length;
+	const turn = 360;
+	const cardinals = Object.keys(points);
+	const directionCount = cardinals.length;
 	const degrees = directions[instruction] + points[robot.orientation];
-	let index = Math.round(((degrees % 360) / 360) * pointsLength);
+	let index = Math.round(((degrees % turn) / turn) * directionCount);
 
-	// Handle the negative num case
-	index = index < 0 ? index += pointsLength : index;
+	// Handle the negative number case
+	index = index < 0 ? index += directionCount : index;
 
-	robot.orientation = Object.keys(points)[index];
-	return robot;
+	return {
+		...robot,
+		orientation: cardinals[index]
+	};
 }
 
 module.exports = handleRobotInstruction;
