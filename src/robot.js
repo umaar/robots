@@ -17,8 +17,12 @@ const points = {
 };
 
 function handleRobotInstruction(robot, instruction) {
+	let pointsLength = Object.keys(points).length;
 	const degrees = directions[instruction] + points[robot.orientation];
-	const index = Math.round(( (degrees % 360) / 360) * 4);
+	let index = Math.round(( (degrees % 360) / 360) * pointsLength);
+
+	// Handle the negative num case
+	index = index < 0 ? index += pointsLength : index;
 
 	robot.orientation = Object.keys(points)[index];
 	return robot;

@@ -17,4 +17,16 @@ test('Robot instruction', t => {
 
 	const try4 = handleRobotInstruction({x: 2, y: 1, orientation: 'W'}, 'R');
 	t.same(try4, {x: 2, y: 1, orientation: 'N'});
+
+	const try5 = handleRobotInstruction({x: 2, y: 1, orientation: 'W'}, 'L');
+	t.same(try5, {x: 2, y: 1, orientation: 'S'});
+
+	const try6 = handleRobotInstruction({x: 2, y: 1, orientation: 'S'}, 'L');
+	t.same(try6, {x: 2, y: 1, orientation: 'E'});
+
+	const try7 = handleRobotInstruction({x: 2, y: 1, orientation: 'E'}, 'L');
+	t.same(try7, {x: 2, y: 1, orientation: 'N'});
+
+	const try8 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'L');
+	t.same(try8, {x: 2, y: 1, orientation: 'W'});
 });
