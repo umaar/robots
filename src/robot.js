@@ -8,21 +8,26 @@ const directions = { L: -90, R: 90 };
 
 const points = ['N', 'E', 'S', 'W'];
 
-function handleRobotInstruction(robot, instruction='') {
-	//instruction.split().map
+function handleOrientation(currentOrientation, desiredOrientation) {
 	const turn = 360;
 	const directionCount = points.length;
-	const currentDegrees = (points.indexOf(robot.orientation) * 360) / 4;
-	const degrees = directions[instruction] + currentDegrees;
+	const currentDegrees = (points.indexOf(currentOrientation) * 360) / 4;
+	const degrees = directions[desiredOrientation] + currentDegrees;
 	let index = Math.round(((degrees % turn) / turn) * directionCount);
 
 	// Handle the negative number case
 	index = index < 0 ? index += directionCount : index;
 
-	return {
-		...robot,
-		orientation: points[index]
-	};
+	return points[index];
+}
+
+function handleRobotInstruction(robot, instruction='') {
+	instruction.split('').map(direction => {
+		const updatedOrientation = handleOrientation(robot.orientation, direction);
+		robot.orientation = updatedOrientation;
+	});
+
+	return robot;
 }
 
 module.exports = handleRobotInstruction;
