@@ -18,7 +18,7 @@ const points = {
 
 function handleRobotInstruction(robot, instruction) {
 	const degrees = directions[instruction] + points[robot.orientation];
-	const index = Math.round((degrees / 360) * 4);
+	const index = Math.round(( (degrees % 360) / 360) * 4);
 
 	robot.orientation = Object.keys(points)[index];
 	return robot;
