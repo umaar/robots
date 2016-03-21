@@ -2,7 +2,7 @@ import test from 'ava';
 
 import robot from '../src/robot.js';
 
-test('Robot instruction', t => {
+test('Single Robot instruction', t => {
 	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
 	t.is(typeof handleRobotInstruction, 'function');
 

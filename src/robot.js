@@ -4,23 +4,16 @@
 	robot = { x: 2, y:1, orientation: 'N' }
 */
 
-const directions = {
-	L: -90,
-	R: 90
-};
+const directions = { L: -90, R: 90 };
 
-const points = {
-	N: 0,
-	E: 90,
-	S: 180,
-	W: 270
-};
+const points = ['N', 'E', 'S', 'W'];
 
-function handleRobotInstruction(robot, instruction) {
+function handleRobotInstruction(robot, instruction='') {
+	//instruction.split().map
 	const turn = 360;
-	const cardinals = Object.keys(points);
-	const directionCount = cardinals.length;
-	const degrees = directions[instruction] + points[robot.orientation];
+	const directionCount = points.length;
+	const currentDegrees = (points.indexOf(robot.orientation) * 360) / 4;
+	const degrees = directions[instruction] + currentDegrees;
 	let index = Math.round(((degrees % turn) / turn) * directionCount);
 
 	// Handle the negative number case
@@ -28,7 +21,7 @@ function handleRobotInstruction(robot, instruction) {
 
 	return {
 		...robot,
-		orientation: cardinals[index]
+		orientation: points[index]
 	};
 }
 
