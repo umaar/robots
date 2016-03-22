@@ -47,7 +47,7 @@ function handleRobotInstruction(robot, instruction = '') {
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
 
-		return Object.assign(robot, {orientation, x, y});
+		return Object.assign(robot, {orientation}, {x, y});
 	}, robot);
 }
 

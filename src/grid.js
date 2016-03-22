@@ -4,6 +4,8 @@
 	grid = {
 		xMax: 5,
 		yMax: 3,
+		xMin: 0,
+		yMin: 0,
 		scents: [
 			{ x: 2, y: 1, orientation: 'N' }
 		]

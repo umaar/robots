@@ -55,4 +55,32 @@ test('Robot can handle movement', t => {
 
 	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'F');
 	t.same(try1, {x: 2, y: 2, orientation: 'N'});
+
+	const try2 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'FFF');
+	t.same(try2, {x: 2, y: 4, orientation: 'N'});
+});
+
+test('Robot can get lost', t => {
+	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
+
+	const sampleGrid = {
+		xMax: 5,
+		yMax: 3,
+		xMin: 0,
+		yMin: 0
+	};
+
+	const sampleRobot = Object.assign({}, {x: 1, y: 1, orientation: 'N'}, sampleGrid);
+
+	const {x, y, orientation} = handleRobotInstruction(sampleRobot, 'FFF');
+	t.is(x, 1);
+	t.is(y, 3);
+	t.is(orientation, 'N');
+});
+
+test('Robot can handle movement and orientation', t => {
+	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
+
+	const try1 = handleRobotInstruction({x: 1, y: 1, orientation: 'E'}, 'RFRFRFRF');
+	t.same(try1, {x: 1, y: 1, orientation: 'E'});
 });
