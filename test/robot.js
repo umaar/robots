@@ -70,7 +70,11 @@ test('Robot can get lost', t => {
 		yMin: 0
 	};
 
-	const sampleRobot = Object.assign({}, {x: 1, y: 1, orientation: 'N'}, sampleGrid);
+	const sampleRobot = {x: 1,
+		y: 1,
+		orientation: 'N',
+		grid: sampleGrid
+	};
 
 	const {x, y, orientation} = handleRobotInstruction(sampleRobot, 'FFF');
 	t.is(x, 1);

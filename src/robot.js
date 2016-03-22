@@ -21,8 +21,8 @@ function handleOrientation(currentOrientation, desiredOrientation) {
 	return points[index] || currentOrientation;
 }
 
-function handlePosition({orientation, x, y}, thing) {
-	if (thing === 'F') {
+function handlePosition({orientation, x, y}, movement) {
+	if (movement === 'F') {
 		if (orientation === 'N') {
 			y++;
 		}
