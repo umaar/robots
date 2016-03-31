@@ -42,12 +42,16 @@ function handlePosition({orientation, x, y}, movement) {
 	};
 }
 
-function handleRobotInstruction(robot, instruction = '') {
+function handleRobotInstruction(robot, instruction = '', grid = {}) {
 	return instruction.split('').reduce((robot, direction) => {
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
 
-		return Object.assign(robot, {orientation}, {x, y});
+		if (x > grid.xMax || y > grid.yMax) {
+			return Object.assign(robot, {lostStatus: 'LOST'});
+		} else {
+			return Object.assign(robot, {orientation}, {x, y});
+		}
 	}, robot);
 }
 

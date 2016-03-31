@@ -70,16 +70,17 @@ test('Robot can get lost', t => {
 		yMin: 0
 	};
 
-	const sampleRobot = {x: 1,
+	const sampleRobot = {
+		x: 1,
 		y: 1,
-		orientation: 'N',
-		grid: sampleGrid
+		orientation: 'N'
 	};
 
-	const {x, y, orientation} = handleRobotInstruction(sampleRobot, 'FFF');
+	const {x, y, orientation, lostStatus} = handleRobotInstruction(sampleRobot, 'FFF', sampleGrid);
 	t.is(x, 1);
 	t.is(y, 3);
 	t.is(orientation, 'N');
+	t.is(lostStatus, 'LOST');
 });
 
 test('Robot can handle movement and orientation', t => {
