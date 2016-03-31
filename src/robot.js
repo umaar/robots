@@ -47,7 +47,12 @@ function handleRobotInstruction(robot, instruction = '', grid = {}) {
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
 
-		if (x > grid.xMax || y > grid.yMax) {
+		if (
+			x > grid.xMax ||
+			y > grid.yMax ||
+			x < grid.xMin ||
+			y < grid.yMin
+		) {
 			return Object.assign(robot, {lostStatus: 'LOST'});
 		} else {
 			return Object.assign(robot, {orientation}, {x, y});

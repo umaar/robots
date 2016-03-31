@@ -60,26 +60,50 @@ test('Robot can handle movement', t => {
 	t.same(try2, {x: 2, y: 4, orientation: 'N'});
 });
 
-test('Robot can get lost', t => {
+test('Robot can get lost going over max', t => {
 	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
 
-	const sampleGrid = {
+	const sampleGrid1 = {
 		xMax: 5,
 		yMax: 3,
 		xMin: 0,
 		yMin: 0
 	};
 
-	const sampleRobot = {
+	const sampleRobot1 = {
 		x: 1,
 		y: 1,
 		orientation: 'N'
 	};
 
-	const {x, y, orientation, lostStatus} = handleRobotInstruction(sampleRobot, 'FFF', sampleGrid);
+	const {x, y, orientation, lostStatus} = handleRobotInstruction(sampleRobot1, 'FFF', sampleGrid1);
 	t.is(x, 1);
 	t.is(y, 3);
 	t.is(orientation, 'N');
+	t.is(lostStatus, 'LOST');
+});
+
+test('Robot can get lost going under the min', t => {
+	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
+
+	const sampleGrid1 = {
+		xMax: 5,
+		yMax: 3,
+		xMin: 0,
+		yMin: 0
+	};
+
+	const sampleRobot1 = {
+		x: 2,
+		y: 2,
+		orientation: 'N'
+	};
+
+	const {x, y, orientation, lostStatus} = handleRobotInstruction(sampleRobot1, 'LFFF', sampleGrid1);
+	console.log('\nthis:', x,y,orientation,lostStatus, '\n');
+	t.is(x, 0);
+	t.is(y, 2);
+	t.is(orientation, 'W');
 	t.is(lostStatus, 'LOST');
 });
 
