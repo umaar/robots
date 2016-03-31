@@ -42,17 +42,21 @@ function handlePosition({orientation, x, y}, movement) {
 	};
 }
 
+function isOutOfBounds(grid, x, y) {
+	if (x > grid.xMax ||
+		y > grid.yMax ||
+		x < grid.xMin ||
+		y < grid.yMin) {
+		return true;
+	}
+}
+
 function handleRobotInstruction(robot, instruction = '', grid = {}) {
 	return instruction.split('').reduce((robot, direction) => {
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
 
-		if (
-			x > grid.xMax ||
-			y > grid.yMax ||
-			x < grid.xMin ||
-			y < grid.yMin
-		) {
+		if (isOutOfBounds(grid, x, y)) {
 			return Object.assign(robot, {lostStatus: 'LOST'});
 		} else {
 			return Object.assign(robot, {orientation}, {x, y});

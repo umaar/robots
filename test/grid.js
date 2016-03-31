@@ -1,13 +1,12 @@
 import test from 'ava';
 
-import grid from '../src/grid.js';
+import {isValidMove, applyGridScents} from '../src/grid.js';
 
 /*
 	what if orientation differs, can a robot still fall off the grid?
 */
 
 test('Is Valid Instruction', t => {
-	const isValidMove = grid.__get__('isValidMove');
 	t.is(typeof isValidMove, 'function');
 
 	const sampleGrid = {
@@ -47,3 +46,22 @@ test('Is Valid Instruction', t => {
 	});
 	t.is(try6, true);
 });
+
+
+test('can apply scents to a grid', t => {
+	const sampleGrid = {
+		scents: []
+	};
+
+	const sampleRobot = {
+		x: 1,
+		y: 1,
+		orientation: 'N',
+		lostStatus: 'LOST'
+	};
+
+	const grid = applyGridScents(sampleGrid, sampleRobot);
+	t.is(grid.scents.length, 1);
+	t.same(grid.scents[0], {x:1, y:1, orientation: 'N'});
+});
+

@@ -15,7 +15,17 @@
 
 */
 
-function isValidMove(disallowedMoves = [], attempt) {
+export function applyGridScents(grid, {lostStatus, x, y, orientation}) {
+	if (lostStatus === 'LOST') {
+		grid.scents.push({
+			x, y, orientation
+		});
+	}
+
+	return grid;
+}
+
+export function isValidMove(disallowedMoves = [], attempt) {
 	return !disallowedMoves.some(({x, y, orientation}) => {
 		return x === attempt.x &&
 			y === attempt.y &&
@@ -23,4 +33,4 @@ function isValidMove(disallowedMoves = [], attempt) {
 	});
 }
 
-module.exports = isValidMove;
+// module.exports = isValidMove;
