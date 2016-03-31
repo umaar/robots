@@ -18,15 +18,40 @@ function handleOrientation(currentOrientation, desiredOrientation) {
 	// Handle the negative number case
 	index = index < 0 ? index += directionCount : index;
 
-	return points[index];
+	return points[index] || currentOrientation;
 }
 
-function handleRobotInstruction(robot, instruction = '') {
-	return instruction.split('').reduce((robot, direction) => {
-		const updatedOrientation = handleOrientation(robot.orientation, direction);
+function handlePosition({orientation, x, y}, movement) {
+	if (movement === 'F') {
+		if (orientation === 'N') {
+			y++;
+		}
+		if (orientation === 'E') {
+			x++;
+		}
+		if (orientation === 'S') {
+			y--;
+		}
+		if (orientation === 'W') {
+			x--;
+		}
+	}
 
-		robot.orientation = updatedOrientation;
-		return robot;
+	return {
+		x, y
+	};
+}
+
+function handleRobotInstruction(robot, instruction = '', grid = {}) {
+	return instruction.split('').reduce((robot, direction) => {
+		const orientation = handleOrientation(robot.orientation, direction);
+		const {x, y} = handlePosition(robot, direction);
+
+		if (x > grid.xMax || y > grid.yMax) {
+			return Object.assign(robot, {lostStatus: 'LOST'});
+		} else {
+			return Object.assign(robot, {orientation}, {x, y});
+		}
 	}, robot);
 }
 
