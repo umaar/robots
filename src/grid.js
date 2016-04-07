@@ -1,4 +1,4 @@
-
+var clone = require('lodash.clone');
 /*
 
 	grid = {
@@ -14,16 +14,6 @@
 	Add a todo() method here
 
 */
-
-export function applyGridScents(grid, {lostStatus, x, y, orientation}) {
-	if (lostStatus === 'LOST') {
-		grid.scents.push({
-			x, y, orientation
-		});
-	}
-
-	return grid;
-}
 
 export function isValidMove(disallowedMoves = [], attempt) {
 	return !disallowedMoves.some(({x, y, orientation}) => {

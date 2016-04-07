@@ -55,12 +55,15 @@ function handleRobotInstruction(robot, instruction = '', grid = {}) {
 	return instruction.split('').reduce((robot, direction) => {
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
+		let updatedRobot;
 
 		if (isOutOfBounds(grid, x, y)) {
-			return Object.assign(robot, {lostStatus: 'LOST'});
+			updatedRobot = Object.assign(robot, {lostStatus: 'LOST'});
 		} else {
-			return Object.assign(robot, {orientation}, {x, y});
+			updatedRobot = Object.assign(robot, {orientation}, {x, y});
 		}
+
+		return updatedRobot;
 	}, robot);
 }
 

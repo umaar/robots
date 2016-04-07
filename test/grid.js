@@ -47,7 +47,6 @@ test('Is Valid Instruction', t => {
 	t.is(try6, true);
 });
 
-
 test('can apply scents to a grid', t => {
 	const sampleGrid = {
 		scents: []
@@ -60,8 +59,24 @@ test('can apply scents to a grid', t => {
 		lostStatus: 'LOST'
 	};
 
-	const grid = applyGridScents(sampleGrid, sampleRobot);
-	t.is(grid.scents.length, 1);
-	t.same(grid.scents[0], {x:1, y:1, orientation: 'N'});
+	applyGridScents(sampleGrid, sampleRobot);
+	// t.is(grid.scents.length, 1);
+	// t.same(grid.scents[0], {x: 1, y: 1, orientation: 'N'});
+
+	console.log('\nthis:', sampleGrid, '\n');
+
+// 	const grid2 = applyGridScents(sampleGrid, sampleRobot);
+// 	t.is(grid.scents.length, 2);
+// console.log('\nthis:', sampleGrid, '\n');
 });
 
+// test('no scent is applied if robot is not lost', t => {
+// 	const sampleGrid = {
+// 		scents: []
+// 	};
+
+// 	const sampleRobot = {};
+
+// 	const grid = applyGridScents(sampleGrid, sampleRobot);
+// 	t.is(grid.scents.length, 0);
+// });
