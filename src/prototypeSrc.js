@@ -1,10 +1,5 @@
 import fs from 'fs';
 
-/*
-{ initialPosition: { x: 1, y: 1, orientation: 'E' },
-    instructions: [ 'R', 'F', 'R', 'F', 'R', 'F', 'R', 'F' ] }
-*/
-
 function init() {
 	const file = fs.readFileSync('./input.txt').toString();
 	const [upperRightCoords, ...behaviour] = file.split('\n').filter(line => line.length !== 0);

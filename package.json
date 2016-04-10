@@ -33,8 +33,5 @@
     "envs": [
       "node"
     ]
-  },
-  "dependencies": {
-    "lodash.clone": "^4.3.2"
   }
 }

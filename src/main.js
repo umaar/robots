@@ -6,9 +6,7 @@ import {setupEnvironment} from './environment';
 
 function start() {
 	const fileContents = fs.readFileSync('./input.txt').toString();
-	const env = setupEnvironment(fileContents);
-	const positionAndInstruction = env.positionAndInstruction;
-	let grid = env.grid;
+	const {grid, positionAndInstruction} = setupEnvironment(fileContents);
 
 	const results = positionAndInstruction.map(({initialPosition, instructions}) => {
 		const robot = {
@@ -21,7 +19,7 @@ function start() {
 		const updatedRobot = handleRobotInstruction(robot, instructions, grid);
 
 		if (updatedRobot.lostStatus === 'LOST') {
-			grid = applyGridScents(grid, updatedRobot);
+			applyGridScents(grid, updatedRobot);
 		}
 		return updatedRobot;
 	});
