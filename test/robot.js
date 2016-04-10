@@ -100,7 +100,7 @@ test('Robot can get lost going under the min', t => {
 	};
 
 	const {x, y, orientation, lostStatus} = handleRobotInstruction(sampleRobot1, 'LFFF', sampleGrid1);
-	console.log('\nthis:', x,y,orientation,lostStatus, '\n');
+
 	t.is(x, 0);
 	t.is(y, 2);
 	t.is(orientation, 'W');

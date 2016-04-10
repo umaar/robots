@@ -1,4 +1,3 @@
-var clone = require('lodash.clone');
 /*
 
 	grid = {
@@ -23,4 +22,11 @@ export function isValidMove(disallowedMoves = [], attempt) {
 	});
 }
 
-// module.exports = isValidMove;
+export function applyGridScents(grid, {lostStatus, x, y, orientation}) {
+	const updatedGrid = Object.assign({}, grid);
+	if (lostStatus === 'LOST') {
+		updatedGrid.scents.push({x, y, orientation});
+	}
+
+	return updatedGrid;
+}

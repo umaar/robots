@@ -1,7 +1,4 @@
-require('babel-register')({
-	plugins: ['babel-plugin-rewire'],
-	sourceMaps: 'inline'
-});
+require('babel-register')();
 
 require('babel-polyfill');
 
