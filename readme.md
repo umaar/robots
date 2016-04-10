@@ -11,7 +11,7 @@ npm start
 
 ## Info
 
-* [src/main.js](blob/master/src/main.js) contains the proper version.
-* [src/prototypeSrc.js](blob/master/src/prototypeSrc.js) contains a 'quick' prototype.
+* `[src/main.js](https://github.com/umaar/robots/blob/master/src/main.js)` contains the proper version.
+* `[src/prototypeSrc.js](https://github.com/umaar/robots/blob/master/src/prototypeSrc.js)` contains a 'quick' prototype.
 
 
