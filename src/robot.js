@@ -8,7 +8,7 @@ const directions = {L: -90, R: 90};
 
 const points = ['N', 'E', 'S', 'W'];
 
-function handleOrientation(currentOrientation, desiredOrientation) {
+export function handleOrientation(currentOrientation, desiredOrientation) {
 	const turn = 360;
 	const directionCount = points.length;
 	const currentDegrees = (points.indexOf(currentOrientation) * 360) / 4;
@@ -21,7 +21,7 @@ function handleOrientation(currentOrientation, desiredOrientation) {
 	return points[index] || currentOrientation;
 }
 
-function handlePosition({orientation, x, y}, movement) {
+export function handlePosition({orientation, x, y}, movement) {
 	if (movement === 'F') {
 		if (orientation === 'N') {
 			y++;
@@ -42,7 +42,7 @@ function handlePosition({orientation, x, y}, movement) {
 	};
 }
 
-function isOutOfBounds(grid, x, y) {
+export function isOutOfBounds(grid, x, y) {
 	if (x > grid.xMax ||
 		y > grid.yMax ||
 		x < grid.xMin ||
@@ -51,7 +51,7 @@ function isOutOfBounds(grid, x, y) {
 	}
 }
 
-function handleRobotInstruction(robot, instruction = '', grid = {}) {
+export function handleRobotInstruction(robot, instruction = '', grid = {}) {
 	return instruction.split('').reduce((robot, direction) => {
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
@@ -67,4 +67,3 @@ function handleRobotInstruction(robot, instruction = '', grid = {}) {
 	}, robot);
 }
 
-module.exports = handleRobotInstruction;

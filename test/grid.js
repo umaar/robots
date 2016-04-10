@@ -67,13 +67,18 @@ test('can apply scents to a grid', t => {
 	t.is(grid2.scents.length, 2);
 });
 
-// test('no scent is applied if robot is not lost', t => {
-// 	const sampleGrid = {
-// 		scents: []
-// 	};
+test('no scent is applied if robot is not lost', t => {
+	const sampleGrid = {
+		scents: []
+	};
 
-// 	const sampleRobot = {};
+	const sampleRobot = {
+		x: 1,
+		y: 1,
+		orientation: 'N',
+		lostStatus: 100
+	};
 
-// 	const grid = applyGridScents(sampleGrid, sampleRobot);
-// 	t.is(grid.scents.length, 0);
-// });
+	const grid = applyGridScents(sampleGrid, sampleRobot);
+	t.is(grid.scents.length, 0);
+});

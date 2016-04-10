@@ -1,9 +1,8 @@
 import test from 'ava';
 
-import robot from '../src/robot.js';
+import {handleRobotInstruction} from '../src/robot.js';
 
 test('Robot instruction with a single direction', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
 	t.is(typeof handleRobotInstruction, 'function');
 
 	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'E'}, 'R');
@@ -32,8 +31,6 @@ test('Robot instruction with a single direction', t => {
 });
 
 test('Robot instruction with a many directions', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
-
 	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'E'}, 'RR');
 	t.same(try1, {x: 2, y: 1, orientation: 'W'});
 
@@ -51,8 +48,6 @@ test('Robot instruction with a many directions', t => {
 });
 
 test('Robot can handle movement', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
-
 	const try1 = handleRobotInstruction({x: 2, y: 1, orientation: 'N'}, 'F');
 	t.same(try1, {x: 2, y: 2, orientation: 'N'});
 
@@ -61,8 +56,6 @@ test('Robot can handle movement', t => {
 });
 
 test('Robot can get lost going over max', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
-
 	const sampleGrid1 = {
 		xMax: 5,
 		yMax: 3,
@@ -84,8 +77,6 @@ test('Robot can get lost going over max', t => {
 });
 
 test('Robot can get lost going under the min', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
-
 	const sampleGrid1 = {
 		xMax: 5,
 		yMax: 3,
@@ -108,8 +99,6 @@ test('Robot can get lost going under the min', t => {
 });
 
 test('Robot can handle movement and orientation', t => {
-	const handleRobotInstruction = robot.__get__('handleRobotInstruction');
-
 	const try1 = handleRobotInstruction({x: 1, y: 1, orientation: 'E'}, 'RFRFRFRF');
 	t.same(try1, {x: 1, y: 1, orientation: 'E'});
 });
