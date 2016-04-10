@@ -2,10 +2,6 @@ import test from 'ava';
 
 import {isValidMove, applyGridScents} from '../src/grid.js';
 
-/*
-	what if orientation differs, can a robot still fall off the grid?
-*/
-
 test('Is Valid Instruction', t => {
 	t.is(typeof isValidMove, 'function');
 
