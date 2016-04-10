@@ -4,6 +4,8 @@
 	robot = { x: 2, y:1, orientation: 'N' }
 */
 
+import {isValidMove} from './grid';
+
 const directions = {L: -90, R: 90};
 
 const points = ['N', 'E', 'S', 'W'];
@@ -53,17 +55,23 @@ export function isOutOfBounds(grid, x, y) {
 
 export function handleRobotInstruction(robot, instruction = '', grid = {}) {
 	return instruction.split('').reduce((robot, direction) => {
+		if (robot.lostStatus === 'LOST') return robot;
+
 		const orientation = handleOrientation(robot.orientation, direction);
 		const {x, y} = handlePosition(robot, direction);
 		let updatedRobot;
 
-		if (isOutOfBounds(grid, x, y)) {
-			updatedRobot = Object.assign(robot, {lostStatus: 'LOST'});
-		} else {
-			updatedRobot = Object.assign(robot, {orientation}, {x, y});
+		if (!isOutOfBounds(grid, x, y)) {
+			updatedRobot = Object.assign(robot, {x, y});
+		} else if (isOutOfBounds(grid, x, y)) {
+			if (isValidMove(grid.scents, robot)) {
+				updatedRobot = Object.assign(robot, {lostStatus: 'LOST'});
+			} else {
+				updatedRobot = robot;
+			}
 		}
 
-		return updatedRobot;
+		return Object.assign({}, updatedRobot, {orientation});
 	}, robot);
 }
 
