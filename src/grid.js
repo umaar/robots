@@ -1,4 +1,4 @@
-export function isValidMove(disallowedMoves = [], attempt) {
+export function isValidMove(attempt, disallowedMoves = []) {
 	return !disallowedMoves.some(({x, y, orientation}) => {
 		return x === attempt.x &&
 			y === attempt.y &&

@@ -1,8 +1,8 @@
-
 import fs from 'fs';
-import {handleRobotInstruction} from './robot';
-import {applyGridScents} from './grid';
-import {setupEnvironment} from './environment';
+
+import {handleRobotInstruction} from './robot.js';
+import {applyGridScents} from './grid.js';
+import {setupEnvironment} from './environment.js';
 
 function start() {
 	const fileContents = fs.readFileSync('./input.txt').toString();
@@ -21,10 +21,11 @@ function start() {
 		if (updatedRobot.lostStatus === 'LOST') {
 			applyGridScents(grid, updatedRobot);
 		}
+
 		return updatedRobot;
 	});
 
 	results.map(({x, y, orientation, lostStatus}) => console.log(`${x} ${y} ${orientation} ${lostStatus ? 'LOST' : ''}`));
 }
 
-module.exports = start;
+start();

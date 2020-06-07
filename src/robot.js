@@ -1,4 +1,4 @@
-import {isValidMove} from './grid';
+import {isValidMove} from './grid.js';
 
 const directions = {L: -90, R: 90};
 const points = ['N', 'E', 'S', 'W'];
@@ -21,12 +21,15 @@ export function handlePosition({orientation, x, y}, movement) {
 		if (orientation === 'N') {
 			y++;
 		}
+
 		if (orientation === 'E') {
 			x++;
 		}
+
 		if (orientation === 'S') {
 			y--;
 		}
+
 		if (orientation === 'W') {
 			x--;
 		}
@@ -50,7 +53,7 @@ export function handleRobotInstruction(robot, instruction = '', grid = {}) {
 		const {x, y} = handlePosition(robot, direction);
 		let updatedRobot;
 
-		if (isOutOfBounds(grid, x, y) && isValidMove(grid.scents, robot)) {
+		if (isOutOfBounds(grid, x, y) && isValidMove(robot, grid.scents)) {
 			updatedRobot = Object.assign(robot, {lostStatus: 'LOST'});
 		} else if (!isOutOfBounds(grid, x, y)) {
 			updatedRobot = Object.assign(robot, {x, y});

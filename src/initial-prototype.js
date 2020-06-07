@@ -3,19 +3,20 @@ import fs from 'fs';
 function init() {
 	const file = fs.readFileSync('./input.txt').toString();
 	const [upperRightCoords, ...behaviour] = file.split('\n').filter(line => line.length !== 0);
-	const [upperX, upperY] = upperRightCoords.split(' ').map(coord => parseInt(coord, 10));
-	const positionAndInstruction = behaviour.reduce((previous, current, index, arr) => {
+	const [upperX, upperY] = upperRightCoords.split(' ').map(coord => Number.parseInt(coord, 10));
+	const positionAndInstruction = behaviour.reduce((previous, current, index, array) => {
 		if (index % 2 === 1) {
-			const [x, y, orientation] = arr[index - 1].split(' ');
+			const [x, y, orientation] = array[index - 1].split(' ');
 			previous.push({
 				initialPosition: {
-					x: parseInt(x, 10),
-					y: parseInt(y, 10),
+					x: Number.parseInt(x, 10),
+					y: Number.parseInt(y, 10),
 					orientation
 				},
 				instructions: current.split('')
 			});
 		}
+
 		return previous;
 	}, []);
 
@@ -44,6 +45,7 @@ function init() {
 			if (robot.lostStatus === 'LOST') {
 				return;
 			}
+
 			const currentRobotOrientation = robot.orientation;
 			if (instruction === 'L' || instruction === 'R') {
 				robot.orientation = orientationMappings[instruction][currentRobotOrientation];
@@ -57,7 +59,7 @@ function init() {
 						return scent.x === robot.x && scent.y === robot.y;
 					}).length;
 					if (foundScent) {
-						// do nothing
+						// Do nothing
 					} else {
 						robot.lostStatus = 'LOST';
 						grid.scents.push({
@@ -81,4 +83,4 @@ function init() {
 	});
 }
 
-module.exports = init;
+init();
