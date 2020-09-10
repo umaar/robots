@@ -7,9 +7,9 @@
   "author": "Umar Hansa",
   "private": true,
   "devDependencies": {
-    "@umaar/personal-eslint-config": "^1.0.2",
-    "ava": "^3.7.1",
-    "xo": "^0.29.1"
+    "@umaar/personal-eslint-config": "^1.0.3",
+    "ava": "^3.12.1",
+    "xo": "^0.33.1"
   },
   "xo": {
     "extends": "./node_modules/@umaar/personal-eslint-config/rules.json"
