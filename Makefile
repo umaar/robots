@@ -4,6 +4,9 @@
 install:
 	npm install
 
+install-ci:
+	npm ci
+
 update-deps:
 	ncu -u
 

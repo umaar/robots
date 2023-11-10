@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Note the GitHub action timeout of 15 minutes
-        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes"
+        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes. Increase if needed, within the GitHub actions .yml file."
 
       - uses: actions/checkout@v4
 
@@ -29,6 +29,6 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: make install
+        run: make install-ci
 
       - run: make test
