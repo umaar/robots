@@ -5,20 +5,30 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    # shouldn't take longer than this
+    # Increase if needed, but my projects should generally take less than this
     timeout-minutes: 15
 
     steps:
-      - name: Note timeout setting (15 minutes)
-        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes - you can increase this in the GitHub actions file if needed"
-
-      - name: Log timeout setting (15 minutes)
-        run: echo "⏱️ The job has a timeout set to 15 minutes!"
+      - name: Note the GitHub action timeout of 15 minutes
+        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes"
 
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "*"
 
-      - run: npm install --ignore-scripts
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: make install
+
       - run: make test
