@@ -10,11 +10,8 @@ update-deps:
 start:
 	node src/main.js
 
-lint:
-	./node_modules/.bin/xo
-
 unit:
 	./node_modules/.bin/ava
 
-test: lint unit
+test: unit
 

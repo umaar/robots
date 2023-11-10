@@ -4,14 +4,21 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    # shouldn't take longer than this
+    timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Log timeout setting with annotation warning
+        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes!"
+
+      - name: Log timeout setting (15 minutes)
+        run: echo "⏱️ The job has a timeout set to 15 minutes!"
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '*'
+          node-version: "*"
 
       - name: Cache node modules
         uses: actions/cache@v1
