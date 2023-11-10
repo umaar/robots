@@ -9,8 +9,8 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - name: Log timeout setting with annotation warning
-        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes!"
+      - name: Note timeout setting (15 minutes)
+        run: echo "::warning ::⏱️ The job has a timeout set to 15 minutes - you can increase this in the GitHub actions file if needed"
 
       - name: Log timeout setting (15 minutes)
         run: echo "⏱️ The job has a timeout set to 15 minutes!"
@@ -19,16 +19,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "*"
-
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
 
       - run: npm install --ignore-scripts
       - run: make test
